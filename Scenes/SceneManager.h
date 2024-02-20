@@ -8,6 +8,9 @@ public:
     static void switchTo(Scene* scene);
     static void updateCurrentScene();
     static void renderCurrentScene();
+
+    static void handleInputCurrentScene(unsigned char key, int x, int y);
+
 private:
     static Scene* currentScene;
 };

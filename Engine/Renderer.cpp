@@ -11,3 +11,7 @@ void Renderer::render() {
     glFlush();
     glutSwapBuffers();
 }
+
+void Renderer::handleInput(unsigned char key, int x, int y) {
+    SceneManager::handleInputCurrentScene(key, x, y);
+}

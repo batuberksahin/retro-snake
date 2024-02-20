@@ -21,6 +21,8 @@ add_executable(RetroSnake main.cpp
         Scenes/EndScene.h
         Scenes/SceneManager.cpp
         Scenes/SceneManager.h
+        Engine/Graphics/Timer.cpp
+        Engine/Graphics/Timer.h
 )
 
 # find GLUT and OpenGL

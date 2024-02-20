@@ -1,4 +1,3 @@
-#include <iostream>
 #include "SceneManager.h"
 
 Scene* SceneManager::currentScene = nullptr;
@@ -20,5 +19,11 @@ void SceneManager::updateCurrentScene() {
 void SceneManager::renderCurrentScene() {
     if (currentScene != nullptr) {
         currentScene->render();
+    }
+}
+
+void SceneManager::handleInputCurrentScene(unsigned char key, int x, int y) {
+    if (currentScene != nullptr) {
+        currentScene->handleInput(key, x, y);
     }
 }

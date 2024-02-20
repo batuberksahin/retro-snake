@@ -5,6 +5,8 @@
 class Graphics {
 public:
     static void drawDebugTriangle();
+
+    static void drawRectangle();
 };
 
 

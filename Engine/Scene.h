@@ -3,7 +3,7 @@
 
 class Scene {
 public:
-    virtual void handleInput() = 0;
+    virtual void handleInput(unsigned char key, int x, int y) = 0;
     virtual void update() = 0;
     virtual void render() = 0;
 

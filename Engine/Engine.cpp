@@ -3,11 +3,12 @@
 
 #include "../Scenes/StartScene.h"
 #include "../Scenes/SceneManager.h"
+#include "Graphics/Timer.h"
 
 #include <iostream>
 #include <GL/glut.h>
 
-// This code file are only responsible for the initialization of the game engine, creating the window and starting the game loop.
+// This code file are only responsible for the initialization of the game engine, creating the window, set up the timer and starting the game loop.
 void Engine::start() {
     std::cout << "Engine started..." << std::endl;
 
@@ -30,8 +31,8 @@ void Engine::initializeGlutWindow() {
 
     glutInitWindowSize(screenSize.first * WINDOW_SCALE, screenSize.second * WINDOW_SCALE);
     glutInitWindowPosition(
-            (screenSize.first / 2) - (screenSize.first * WINDOW_SCALE / 2),
-            (screenSize.second / 2) - (screenSize.second * WINDOW_SCALE / 2)
+            screenSize.first / 2 - (screenSize.first * WINDOW_SCALE / 2),
+            screenSize.second / 2 - (screenSize.second * WINDOW_SCALE / 2)
     );
 
     glutCreateWindow("Retro Snake");
@@ -41,6 +42,19 @@ void Engine::initializeGlutWindow() {
     glClearColor(0.0, 0.0, 0.0, 0.0);
 
     glutDisplayFunc(Renderer::render);
+    glutKeyboardFunc(Renderer::handleInput);
+
+    glutTimerFunc(INTERVAL, timer, 0);
 
     glutMainLoop();
+}
+
+void Engine::timer(int time) {
+    Timer::Update();
+
+    SceneManager::updateCurrentScene();
+
+    glutPostRedisplay();
+
+    glutTimerFunc(INTERVAL, timer, 0);
 }

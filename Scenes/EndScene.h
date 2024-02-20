@@ -6,7 +6,7 @@
 
 class EndScene : public Scene {
 public:
-    void handleInput() override;
+    void handleInput(unsigned char key, int x, int y) override;
     void update() override;
     void render() override;
 };

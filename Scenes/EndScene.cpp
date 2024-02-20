@@ -8,6 +8,6 @@ void EndScene::update() {
 
 }
 
-void EndScene::handleInput() {
+void EndScene::handleInput(unsigned char key, int x, int y) {
 
 }
