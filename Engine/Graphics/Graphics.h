@@ -4,7 +4,7 @@
 // Graphics class responsible for drawing shapes and other graphics on the screen, using OpenGL. All members are static.
 class Graphics {
 public:
-    static void drawDebugTriangle();
+    static void drawDebugTriangle(double);
 
     static void drawRectangle();
 
