@@ -7,6 +7,8 @@ public:
     static void drawDebugTriangle();
 
     static void drawRectangle();
+
+    static void drawString(float x, float y, char *string);
 };
 
 
