@@ -4,7 +4,24 @@ project(RetroSnake)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(RetroSnake main.cpp)
+add_executable(RetroSnake main.cpp
+        Engine/Engine.cpp
+        Engine/Engine.h
+        Engine/Graphics/Graphics.cpp
+        Engine/Graphics/Graphics.h
+        Engine/Renderer.cpp
+        Engine/Renderer.h
+        Engine/Utils.cpp
+        Engine/Scene.h
+        Scenes/StartScene.cpp
+        Scenes/StartScene.h
+        Scenes/GameScene.cpp
+        Scenes/GameScene.h
+        Scenes/EndScene.cpp
+        Scenes/EndScene.h
+        Scenes/SceneManager.cpp
+        Scenes/SceneManager.h
+)
 
 # find GLUT and OpenGL
 find_package(GLUT REQUIRED)
