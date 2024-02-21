@@ -1,7 +1,6 @@
 #ifndef RETROSNAKE_GAMEOBJECT_H
 #define RETROSNAKE_GAMEOBJECT_H
 
-
 class GameObject {
 public:
     GameObject(int x = 0, int y = 0) {
@@ -15,6 +14,7 @@ public:
 
     virtual void render() = 0;
     virtual void update() = 0;
+    virtual void handleInput(unsigned char key, int x, int y) = 0;
 
     void setPosition(int x, int y) {
         _x = x;
@@ -32,6 +32,5 @@ protected:
         return _y;
     }
 };
-
 
 #endif //RETROSNAKE_GAMEOBJECT_H

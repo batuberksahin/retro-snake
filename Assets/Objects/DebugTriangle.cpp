@@ -10,3 +10,7 @@ void DebugTriangle::render() {
 void DebugTriangle::update() {
     _time = _time + Timer::GetDeltaTime();
 }
+
+void DebugTriangle::handleInput(unsigned char key, int x, int y) {
+
+}

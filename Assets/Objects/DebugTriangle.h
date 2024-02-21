@@ -13,6 +13,7 @@ public:
 
     void render() override;
     void update() override;
+    virtual void handleInput(unsigned char key, int x, int y) override;
 
 private:
     double _time;

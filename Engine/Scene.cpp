@@ -25,3 +25,9 @@ void Scene::update() {
         gameObject->update();
     }
 }
+
+void Scene::handleInput(unsigned char key, int x, int y) {
+    for (auto& gameObject : _gameObjects) {
+        gameObject->handleInput(key, x, y);
+    }
+}

@@ -30,6 +30,8 @@ add_executable(RetroSnake main.cpp
         Assets/Objects/DebugTriangle.h
         Engine/Scene.cpp
         Engine/Config.h
+        Assets/Objects/Snake.cpp
+        Assets/Objects/Snake.h
 )
 
 # find GLUT and OpenGL

@@ -9,3 +9,11 @@ void Text::render() {
 void Text::update() {
 
 }
+
+void Text::handleInput(unsigned char key, int x, int y) {
+
+}
+
+void Text::setString(const char* string) {
+    _string = string;
+}

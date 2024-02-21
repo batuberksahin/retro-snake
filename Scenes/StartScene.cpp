@@ -16,6 +16,8 @@ void StartScene::update() {
 }
 
 void StartScene::handleInput(unsigned char key, int x, int y) {
+    Scene::handleInput(key, x, y);
+
     // Press space to continue
     if (key == 32) {
         std::cout << "Switching to game scene..." << std::endl;

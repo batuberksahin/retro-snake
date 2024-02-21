@@ -16,6 +16,9 @@ public:
 
     void render() override;
     void update() override;
+    virtual void handleInput(unsigned char key, int x, int y) override;
+
+    void setString(const char* string);
 
 private:
     const char* _string;

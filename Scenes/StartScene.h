@@ -20,7 +20,6 @@ public:
     void update() override;
     void render() override;
 private:
-
 };
 
 #endif //RETROSNAKE_STARTSCENE_H
