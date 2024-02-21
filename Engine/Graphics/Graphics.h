@@ -8,7 +8,7 @@ public:
 
     static void drawRectangle();
 
-    static void drawString(float x, float y, char *string);
+    static void drawString(int x, int y, char *string);
 };
 
 

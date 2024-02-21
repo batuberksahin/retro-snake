@@ -10,13 +10,12 @@
 void StartScene::render() {
     Graphics::drawDebugTriangle(_time);
 
-    Graphics::drawString(-0.15f, -0.4f, "Retro Snake Game");
-    Graphics::drawString(-0.16f, -0.5f, "Press space to start");
+    Graphics::drawString(480, 350, "Retro Snake Game");
+    Graphics::drawString(480, 400, "Press space to start");
 }
 
 void StartScene::update() {
     _time = _time + Timer::GetDeltaTime();
-    std::cout << _time << std::endl;
 }
 
 void StartScene::handleInput(unsigned char key, int x, int y) {

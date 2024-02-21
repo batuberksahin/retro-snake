@@ -8,6 +8,8 @@ public:
     void handleInput(unsigned char key, int x, int y) override;
     void update() override;
     void render() override;
+private:
+    int _score;
 };
 
 #endif //RETROSNAKE_GAMESCENE_H

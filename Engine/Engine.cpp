@@ -3,6 +3,7 @@
 
 #include "../Scenes/StartScene.h"
 #include "../Scenes/SceneManager.h"
+
 #include "Graphics/Timer.h"
 
 #include <iostream>
@@ -12,6 +13,7 @@
 void Engine::start() {
     std::cout << "Engine started..." << std::endl;
 
+    Timer::Initialize();
     Engine::initializeGlutWindow();
 }
 
@@ -30,6 +32,7 @@ void Engine::initializeGlutWindow() {
     std::pair<int, int> screenSize = Engine::getScreenSize();
 
     glutInitWindowSize(screenSize.first * WINDOW_SCALE, screenSize.second * WINDOW_SCALE);
+
     glutInitWindowPosition(
             screenSize.first / 2 - (screenSize.first * WINDOW_SCALE / 2),
             screenSize.second / 2 - (screenSize.second * WINDOW_SCALE / 2)

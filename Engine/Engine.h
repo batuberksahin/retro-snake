@@ -8,6 +8,8 @@
 class Engine {
 public:
     static void start();
+
+    static std::pair<float, float> screenPositionToGLCoordinate(int, int);
 private:
     static const int FPS = 60;
     static const int INTERVAL = 1000 / FPS;

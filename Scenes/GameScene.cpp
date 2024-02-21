@@ -3,12 +3,17 @@
 #include "../Engine/Graphics/Graphics.h"
 #include "../Engine/Graphics/Timer.h"
 
+#include <string>
+
 void GameScene::render() {
 
     Graphics::drawRectangle();
-    Graphics::drawString(-0.85f, 0.85f, "Retro Snake!");
-    Graphics::drawString(0.70f, 0.85f, "Score : 0");
+    Graphics::drawString(100, 50, "Retro Snake!");
 
+    std::string scoreString = std::to_string(_score);
+    std::string scoreDisplay = "Score : " + scoreString;
+
+    Graphics::drawString(860, 50, const_cast<char *>(scoreDisplay.c_str()));
 }
 
 void GameScene::update() {
