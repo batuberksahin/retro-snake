@@ -3,8 +3,8 @@
 #include "../Engine.h"
 
 #include <GL/glut.h>
+
 #include <cmath>
-#include <iostream>
 #include <algorithm>
 
 void Graphics::drawDebugTriangle(double time) {
@@ -20,13 +20,13 @@ void Graphics::drawDebugTriangle(double time) {
 
 void Graphics::drawRectangle() {
     glBegin(GL_QUADS);
-    glColor3f(1.0f, 0.0f, 0.0f);
+    glColor3f(1.0f, 1.0f, 1.0f);
     glVertex2f(-0.5f, 0.5f);
-    glColor3f(0.0f, 1.0f, 0.0f);
+    glColor3f(1.0f, 1.0f, 1.0f);
     glVertex2f(0.5f, 0.5f);
-    glColor3f(0.0f, 0.0f, 1.0f);
+    glColor3f(1.0f, 0.0f, 0.0f);
     glVertex2f(0.5f, -0.5f);
-    glColor3f(1.0f, 1.0f, 0.0f);
+    glColor3f(1.0f, 1.0f, 1.0f);
     glVertex2f(-0.5f, -0.5f);
     glEnd();
 }
@@ -46,4 +46,31 @@ void Graphics::drawString(int x, int y, char *string) {
     }
 
     glEnd();
+}
+
+void Graphics::drawSnake(int x, int y) {
+    drawSnakeHead(x, y);
+}
+
+void Graphics::drawSnakeHead(int posX, int posY) {
+    std::pair<float, float> coordinates = Engine::screenPositionToGLCoordinate(posX, posY);
+
+    float x = coordinates.first;
+    float y = coordinates.second;
+
+    float head_height = 0.05f;
+    float head_width = 0.025f;
+
+    glPushMatrix();
+    glTranslatef(x, y, 0);
+    glRotatef(180, 0, 0, 1);
+    glBegin(GL_TRIANGLES);
+    glColor3f(1.0f, 1.0f, 1.0f);
+    glVertex2f(x, y + head_height);
+    glColor3f(1.0f, 1.0f, 1.0f);
+    glVertex2f(x + head_width, y);
+    glColor3f(1.0f, 1.0f, 1.0f);
+    glVertex2f(x - head_width, y);
+    glEnd();
+    glPopMatrix();
 }

@@ -1,9 +1,11 @@
 #include "Snake.h"
 
+#include "../../Engine/Graphics/Graphics.h"
+
 #include <iostream>
 
 void Snake::render() {
-
+    Graphics::drawSnake(getX(), getY());
 }
 
 void Snake::update() {

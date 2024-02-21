@@ -9,6 +9,9 @@ public:
     static void drawRectangle();
 
     static void drawString(int x, int y, char *string);
+
+    static void drawSnake(int x, int y);
+    static void drawSnakeHead(int x, int y);
 };
 
 

@@ -2,7 +2,7 @@
 
 #include <GL/glut.h>
 
-int main(int argc, char **argv) {
+int main() {
     Engine::start();
 
     exit(EXIT_SUCCESS);

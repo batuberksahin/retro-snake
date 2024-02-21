@@ -32,15 +32,16 @@ add_executable(RetroSnake main.cpp
         Engine/Config.h
         Assets/Objects/Snake.cpp
         Assets/Objects/Snake.h
+        Assets/Objects/GridLayout.cpp
+        Assets/Objects/GridLayout.h
 )
 
 # find GLUT and OpenGL
 find_package(GLUT REQUIRED)
 find_package(OpenGL REQUIRED)
-find_package(Freetype REQUIRED)
 
 # include directories
-include_directories(${OPENGL_INCLUDE_DIR} ${GLUT_INCLUDE_DIR} ${FREETYPE_INCLUDE_DIRS})
+include_directories(${OPENGL_INCLUDE_DIR} ${GLUT_INCLUDE_DIR})
 
 # link libraries
-target_link_libraries(RetroSnake ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES} ${FREETYPE_LIBRARIES})
+target_link_libraries(RetroSnake ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})

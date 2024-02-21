@@ -11,11 +11,14 @@ public:
     GameScene() : Scene() {
         _score = 0;
 
+        _snake = std::make_shared<Snake>(480, 270);
+
         _scoreText = std::make_shared<Text>(860, 50, "Score : 0");
 
-        addGameObject(std::make_shared<Snake>(480, 270));
-        addGameObject(std::make_shared<Text>(100, 50, "Retro Snake!"));
+        addGameObject(_snake);
         addGameObject(_scoreText);
+
+        addGameObject(std::make_shared<Text>(100, 50, "Retro Snake!"));
     }
 
     ~GameScene() override {}
@@ -26,6 +29,7 @@ public:
 private:
     int _score;
     std::shared_ptr<Text> _scoreText;
+    std::shared_ptr<Snake> _snake;
 };
 
 #endif //RETROSNAKE_GAMESCENE_H
