@@ -8,14 +8,11 @@
 #include <iostream>
 
 void StartScene::render() {
-    Graphics::drawDebugTriangle(_time);
-
-    Graphics::drawString(480, 350, "Retro Snake Game");
-    Graphics::drawString(480, 400, "Press space to start");
+    Scene::render();
 }
 
 void StartScene::update() {
-    _time = _time + Timer::GetDeltaTime();
+    Scene::update();
 }
 
 void StartScene::handleInput(unsigned char key, int x, int y) {

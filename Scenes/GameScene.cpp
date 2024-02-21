@@ -6,6 +6,7 @@
 #include <string>
 
 void GameScene::render() {
+    Scene::render();
 
     Graphics::drawRectangle();
     Graphics::drawString(100, 50, "Retro Snake!");
@@ -17,7 +18,7 @@ void GameScene::render() {
 }
 
 void GameScene::update() {
-
+    Scene::update();
 }
 
 void GameScene::handleInput(unsigned char key, int x, int y) {
