@@ -1,5 +1,6 @@
 #include "Engine.h"
 #include "Renderer.h"
+#include "Config.h"
 
 #include "../Scenes/StartScene.h"
 #include "../Scenes/SceneManager.h"
@@ -29,14 +30,22 @@ void Engine::initializeGlutWindow() {
 
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 
-    std::pair<int, int> screenSize = Engine::getScreenSize();
+#if USE_FIXED_WINDOW_SIZE
+    glutInitWindowSize(FIXED_WINDOW_WIDTH, FIXED_WINDOW_HEIGHT);
 
+    glutInitWindowPosition(
+            FIXED_WINDOW_WIDTH - (FIXED_WINDOW_WIDTH / 2),
+            FIXED_WINDOW_HEIGHT - (FIXED_WINDOW_HEIGHT / 2)
+    );
+#else
+    std::pair<int, int> screenSize = Engine::getScreenSize();
     glutInitWindowSize(screenSize.first * WINDOW_SCALE, screenSize.second * WINDOW_SCALE);
 
     glutInitWindowPosition(
             screenSize.first / 2 - (screenSize.first * WINDOW_SCALE / 2),
             screenSize.second / 2 - (screenSize.second * WINDOW_SCALE / 2)
     );
+#endif
 
     glutCreateWindow("Retro Snake");
 

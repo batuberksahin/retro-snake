@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "Config.h"
 
 #include <GL/glut.h>
 
@@ -13,10 +14,15 @@ std::pair<int, int> Engine::getScreenSize() {
 }
 
 std::pair<float, float> Engine::screenPositionToGLCoordinate(int x, int y) {
+#if USE_FIXED_WINDOW_SIZE
+    int windowWidth = FIXED_WINDOW_WIDTH;
+    int windowHeight = FIXED_WINDOW_HEIGHT;
+#else
     std::pair<int, int> screenSizes = Engine::getScreenSize();
 
     int windowWidth = screenSizes.first * WINDOW_SCALE;
     int windowHeight = screenSizes.second * WINDOW_SCALE;
+#endif
 
     float normalizedX = static_cast<float>(x) / windowWidth;
     float normalizedY = static_cast<float>(y) / windowHeight;

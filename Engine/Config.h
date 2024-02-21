@@ -1,0 +1,13 @@
+//
+// Created by batuberk on 21.02.2024.
+//
+
+#ifndef RETROSNAKE_CONFIG_H
+#define RETROSNAKE_CONFIG_H
+
+#define USE_FIXED_WINDOW_SIZE 1
+
+#define FIXED_WINDOW_WIDTH 960
+#define FIXED_WINDOW_HEIGHT 540
+
+#endif //RETROSNAKE_CONFIG_H
