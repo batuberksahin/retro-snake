@@ -13,6 +13,10 @@ public:
     static void drawString(int x, int y, char *string);
 
     static void drawSnakeHead(int x, int y, Direction direction);
+
+    static void drawSnakeBodyPart(int posX, int posY);
+
+    static void drawGridLines();
 };
 
 

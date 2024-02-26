@@ -20,15 +20,12 @@ std::pair<float, float> Engine::screenPositionToGLCoordinate(int x, int y) {
 #else
     std::pair<int, int> screenSizes = Engine::getScreenSize();
 
-    int windowWidth = screenSizes.first * WINDOW_SCALE;
-    int windowHeight = screenSizes.second * WINDOW_SCALE;
+        int windowWidth = screenSizes.first * WINDOW_SCALE;
+        int windowHeight = screenSizes.second * WINDOW_SCALE;
 #endif
 
-    float normalizedX = static_cast<float>(x) / windowWidth;
-    float normalizedY = static_cast<float>(y) / windowHeight;
+    float normalizedX = (2.0f * x) / windowWidth - 1.0f;
+    float normalizedY = 1.0f - (2.0f * y) / windowHeight;
 
-    float glX = normalizedX * 2.0f - 1.0f;
-    float glY = (normalizedY * 2.0f - 1.0f) * -1;
-
-    return std::make_pair(glX, glY);
+    return std::make_pair(normalizedX, normalizedY);
 }

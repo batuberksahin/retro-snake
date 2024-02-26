@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "../GameObject.h"
+#include "GridLayout.h"
 
 enum class Direction {
     UP = 0,
@@ -13,7 +14,7 @@ enum class Direction {
 
 class Snake : public GameObject {
 public:
-    Snake(int x, int y) : GameObject(x, y) {
+    Snake(int x, int y, GridLayout& grid) : GameObject(x, y), _grid(grid) {
         _length = 0;
 
         direction = Direction::RIGHT;
@@ -30,7 +31,9 @@ private:
 
     int _length;
     Direction direction;
+    GridLayout& _grid;
 
+    // integers are represents row and col
     std::vector<std::pair<int, int>> _snakeBodyParts;
 };
 

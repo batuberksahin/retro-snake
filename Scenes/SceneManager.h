@@ -11,6 +11,8 @@ public:
 
     static void handleInputCurrentScene(unsigned char key, int x, int y);
 
+    static Scene * getActiveScene();
+
 private:
     static Scene* currentScene;
 };

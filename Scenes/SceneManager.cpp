@@ -27,3 +27,7 @@ void SceneManager::handleInputCurrentScene(unsigned char key, int x, int y) {
         currentScene->handleInput(key, x, y);
     }
 }
+
+Scene * SceneManager::getActiveScene() {
+    return currentScene;
+}

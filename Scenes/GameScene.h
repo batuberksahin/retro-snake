@@ -11,7 +11,10 @@ public:
     GameScene() : Scene() {
         _score = 0;
 
-        _snake = std::make_shared<Snake>(480, 270);
+        _grid = std::make_shared<GridLayout>();
+
+        // 480, 270 center position
+        _snake = std::make_shared<Snake>(7, 5, *_grid);
 
         _scoreText = std::make_shared<Text>(860, 50, "Score : 0");
 
@@ -30,6 +33,7 @@ private:
     int _score;
     std::shared_ptr<Text> _scoreText;
     std::shared_ptr<Snake> _snake;
+    std::shared_ptr<GridLayout> _grid;
 };
 
 #endif //RETROSNAKE_GAMESCENE_H

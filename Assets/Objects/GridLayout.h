@@ -7,7 +7,6 @@
 #include "../../Engine/Engine.h"
 #include "../../Engine/Config.h"
 
-const int CELL_SIZE = 50;
 const int GRID_ROWS = FIXED_WINDOW_WIDTH / CELL_SIZE;
 const int GRID_COLS = FIXED_WINDOW_HEIGHT / CELL_SIZE;
 
@@ -27,8 +26,11 @@ public:
     CellContent getCellContent(int row, int col) const;
     void setCellContent(int row, int col, CellContent content);
 
+    static std::pair<int, int> getCellCenterPosition(int row, int col) ;
+
 private:
     std::vector<std::vector<CellContent>> _grid;
+
 };
 
 
