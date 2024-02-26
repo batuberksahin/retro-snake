@@ -7,6 +7,7 @@
 
 void Snake::initializeBodyParts() {
     _grid.setCellContent(getY(), getX(), CellContent::Body);
+    _snakeBodyParts.emplace_back(getX(), getY());
 
     for (int i = 1; i <= 3; ++i) {
         int bodyX = getX() - i;
@@ -16,30 +17,37 @@ void Snake::initializeBodyParts() {
 
         _grid.setCellContent(bodyY, bodyX, CellContent::Body);
     }
-
 }
 
 void Snake::render() {
     auto centerPos = _grid.getCellCenterPosition(getY(), getX());
-    std::cout << "row: " << getY() << ", col: " << getX() << std::endl;
-    std::cout << centerPos.first << ", " << centerPos.second << std::endl;
-    Graphics::drawSnakeHead(centerPos.first, centerPos.second, direction);
+    Graphics::drawSnakeHead(centerPos.first, centerPos.second, _direction);
 
-    for (const auto& part : _snakeBodyParts) {
+    for (size_t i = 1; i < _snakeBodyParts.size(); ++i) {
+        const auto& part = _snakeBodyParts[i];
         centerPos = _grid.getCellCenterPosition(part.second, part.first);
+        std::cout << "(" << part.first << "," << part.second << ") ";
         Graphics::drawSnakeBodyPart(centerPos.first, centerPos.second);
     }
+
+    std::cout << std::endl;
 }
 
 void Snake::update() {
-    return;
+    _inputTick++;
 
-    switch (direction) {
+    if (_inputTick != 10) {
+        return;
+    }
+
+    _inputTick = 0;
+    
+    switch (_direction) {
         case Direction::UP:
-            setPosition(getX(), getY() + 1);
+            setPosition(getX(), getY() - 1);
             break;
         case Direction::DOWN:
-            setPosition(getX(), getY() - 1);
+            setPosition(getX(), getY() + 1);
             break;
         case Direction::LEFT:
             setPosition(getX() - 1, getY());
@@ -49,24 +57,28 @@ void Snake::update() {
             break;
     }
 
-    for (int i = _snakeBodyParts.size() - 1; i > 0; --i) {
-        _snakeBodyParts[i] = _snakeBodyParts[i - 1];
-    }
+    auto before = _snakeBodyParts[0];
 
     _snakeBodyParts[0] = std::make_pair(getX(), getY());
+
+    for (int i = 1; i < _snakeBodyParts.size(); i++) {
+        auto temp = _snakeBodyParts[i];
+        _snakeBodyParts[i] = before;
+        before = temp;
+    }
 }
 
 void Snake::handleInput(unsigned char key, int x, int y) {
     if (key == 'w') {
-        direction = Direction::UP;
+        _direction = Direction::UP;
     }
     else if (key == 's') {
-        direction = Direction::DOWN;
+        _direction = Direction::DOWN;
     }
     else if (key == 'a') {
-        direction = Direction::LEFT;
+        _direction = Direction::LEFT;
     }
     else if (key == 'd') {
-        direction = Direction::RIGHT;
+        _direction = Direction::RIGHT;
     }
 }

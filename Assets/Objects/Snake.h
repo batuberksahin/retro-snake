@@ -16,8 +16,9 @@ class Snake : public GameObject {
 public:
     Snake(int x, int y, GridLayout& grid) : GameObject(x, y), _grid(grid) {
         _length = 0;
+        _inputTick = 0;
 
-        direction = Direction::RIGHT;
+        _direction = Direction::RIGHT;
 
         initializeBodyParts();
     }
@@ -30,8 +31,10 @@ private:
     void initializeBodyParts();
 
     int _length;
-    Direction direction;
+    Direction _direction;
     GridLayout& _grid;
+
+    int _inputTick;
 
     // integers are represents row and col
     std::vector<std::pair<int, int>> _snakeBodyParts;

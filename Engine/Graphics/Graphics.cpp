@@ -75,8 +75,6 @@ void Graphics::drawString(int x, int y, char *string) {
 
 void Graphics::drawSnakeHead(int posX, int posY, Direction direction) {
     std::pair<float, float> coordinates = Engine::screenPositionToGLCoordinate(posX, posY);
-    std::cout << "drawSnakeHead pos=" << posX << ", " << posY << std::endl;
-    std::cout << "drawSnakeHead coordinates=" << coordinates.first << ", " << coordinates.second << std::endl;
 
     float x = coordinates.first;
     float y = coordinates.second;
