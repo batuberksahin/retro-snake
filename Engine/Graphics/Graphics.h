@@ -1,6 +1,8 @@
 #ifndef RETROSNAKE_GRAPHICS_H
 #define RETROSNAKE_GRAPHICS_H
 
+#include "../../Assets/Objects/Snake.h"
+
 // Graphics class responsible for drawing shapes and other graphics on the screen, using OpenGL. All members are static.
 class Graphics {
 public:
@@ -10,8 +12,7 @@ public:
 
     static void drawString(int x, int y, char *string);
 
-    static void drawSnake(int x, int y);
-    static void drawSnakeHead(int x, int y);
+    static void drawSnakeHead(int x, int y, Direction direction);
 };
 
 

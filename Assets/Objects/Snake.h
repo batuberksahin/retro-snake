@@ -1,12 +1,13 @@
 #ifndef RETROSNAKE_SNAKE_H
 #define RETROSNAKE_SNAKE_H
 
+#include <vector>
 #include "../GameObject.h"
 
 enum class Direction {
-    UP,
-    DOWN,
+    UP = 0,
     LEFT,
+    DOWN,
     RIGHT
 };
 
@@ -15,7 +16,9 @@ public:
     Snake(int x, int y) : GameObject(x, y) {
         _length = 0;
 
-        direction = Direction::UP;
+        direction = Direction::RIGHT;
+
+        initializeBodyParts();
     }
 
     void render() override;
@@ -23,8 +26,12 @@ public:
     virtual void handleInput(unsigned char key, int x, int y) override;
 
 private:
+    void initializeBodyParts();
+
     int _length;
     Direction direction;
+
+    std::vector<std::pair<int, int>> _snakeBodyParts;
 };
 
 #endif //RETROSNAKE_SNAKE_H

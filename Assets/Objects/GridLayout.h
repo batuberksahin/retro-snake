@@ -1,3 +1,5 @@
+// This is not a game object
+
 #ifndef RETROSNAKE_GRIDLAYOUT_H
 #define RETROSNAKE_GRIDLAYOUT_H
 
@@ -23,6 +25,7 @@ public:
     }
 
     CellContent getCellContent(int row, int col) const;
+    void setCellContent(int row, int col, CellContent content);
 
 private:
     std::vector<std::vector<CellContent>> _grid;

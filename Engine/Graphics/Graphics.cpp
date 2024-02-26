@@ -1,6 +1,7 @@
 #include "Graphics.h"
 
 #include "../Engine.h"
+#include "../../Assets/Objects/Snake.h"
 
 #include <GL/glut.h>
 
@@ -48,11 +49,7 @@ void Graphics::drawString(int x, int y, char *string) {
     glEnd();
 }
 
-void Graphics::drawSnake(int x, int y) {
-    drawSnakeHead(x, y);
-}
-
-void Graphics::drawSnakeHead(int posX, int posY) {
+void Graphics::drawSnakeHead(int posX, int posY, Direction direction) {
     std::pair<float, float> coordinates = Engine::screenPositionToGLCoordinate(posX, posY);
 
     float x = coordinates.first;
@@ -63,7 +60,7 @@ void Graphics::drawSnakeHead(int posX, int posY) {
 
     glPushMatrix();
     glTranslatef(x, y, 0);
-    glRotatef(180, 0, 0, 1);
+    glRotatef(static_cast<int>(direction) * 90, 0, 0, 1);
     glBegin(GL_TRIANGLES);
     glColor3f(1.0f, 1.0f, 1.0f);
     glVertex2f(x, y + head_height);

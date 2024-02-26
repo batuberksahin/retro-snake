@@ -4,8 +4,16 @@
 
 #include <iostream>
 
+void Snake::initializeBodyParts() {
+
+}
+
 void Snake::render() {
-    Graphics::drawSnake(getX(), getY());
+    Graphics::drawSnakeHead(getX(), getY(), direction);
+
+    for (const auto& part : _snakeBodyParts) {
+    //    Graphics::drawSnakeBodyPart(part.first, part.second);
+    }
 }
 
 void Snake::update() {
