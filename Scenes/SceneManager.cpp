@@ -1,3 +1,4 @@
+#include <iostream>
 #include "SceneManager.h"
 
 Scene* SceneManager::currentScene = nullptr;

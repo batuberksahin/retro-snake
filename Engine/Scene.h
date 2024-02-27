@@ -10,8 +10,6 @@ class Scene {
 public:
     Scene() = default;
 
-    virtual ~Scene() = default;
-
     void addGameObject(std::shared_ptr<GameObject>);
     void removeGameObject(std::shared_ptr<GameObject>);
 

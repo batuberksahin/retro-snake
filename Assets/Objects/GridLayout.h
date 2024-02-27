@@ -28,6 +28,10 @@ public:
 
     static std::pair<int, int> getCellCenterPosition(int row, int col) ;
 
+    int getWidth();
+
+    int getHeight();
+
 private:
     std::vector<std::vector<CellContent>> _grid;
 

@@ -13,3 +13,11 @@ std::pair<int, int> GridLayout::getCellCenterPosition(int row, int col) {
     int centerY = (row) * CELL_SIZE;
     return std::make_pair(centerX + (CELL_SIZE / 2), centerY + (CELL_SIZE / 2));
 }
+
+int GridLayout::getWidth() {
+    return _grid.size();
+}
+
+int GridLayout::getHeight() {
+    return _grid[0].size();
+}

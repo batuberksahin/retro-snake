@@ -14,7 +14,7 @@ public:
         addGameObject(std::make_shared<Text>(480, 400, "Press space to start"));
     }
 
-    ~StartScene() override {}
+    ~StartScene() {}
 
     void handleInput(unsigned char key, int x, int y) override;
     void update() override;

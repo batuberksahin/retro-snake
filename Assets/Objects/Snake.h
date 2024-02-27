@@ -19,6 +19,7 @@ public:
         _inputTick = 0;
 
         _direction = Direction::RIGHT;
+        _directionMemo = Direction::RIGHT;
 
         initializeBodyParts();
     }
@@ -35,9 +36,14 @@ private:
     GridLayout& _grid;
 
     int _inputTick;
+    Direction _directionMemo;
 
     // integers are represents row and col
     std::vector<std::pair<int, int>> _snakeBodyParts;
+
+    void moveBodyParts();
+
+    bool checkCollision();
 };
 
 #endif //RETROSNAKE_SNAKE_H

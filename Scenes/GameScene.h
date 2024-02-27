@@ -1,6 +1,7 @@
 #ifndef RETROSNAKE_GAMESCENE_H
 #define RETROSNAKE_GAMESCENE_H
 
+#include <iostream>
 #include "../Engine/Scene.h"
 
 #include "../Assets/Objects/Snake.h"
@@ -13,18 +14,21 @@ public:
 
         _grid = std::make_shared<GridLayout>();
 
-        // 480, 270 center position
         _snake = std::make_shared<Snake>(7, 5, *_grid);
-
         _scoreText = std::make_shared<Text>(860, 50, "Score : 0");
+        _gameText = std::make_shared<Text>(100, 50, "Retro Snake!");
 
         addGameObject(_snake);
         addGameObject(_scoreText);
-
-        addGameObject(std::make_shared<Text>(100, 50, "Retro Snake!"));
+        addGameObject(_gameText);
     }
 
-    ~GameScene() override {}
+    ~GameScene() {
+        std::cout << "GameScene destroyed" << std::endl;
+        removeGameObject(_snake);
+        removeGameObject(_scoreText);
+        removeGameObject(_gameText);
+    }
 
     void handleInput(unsigned char key, int x, int y) override;
     void update() override;
@@ -34,6 +38,7 @@ private:
     std::shared_ptr<Text> _scoreText;
     std::shared_ptr<Snake> _snake;
     std::shared_ptr<GridLayout> _grid;
+    std::shared_ptr<Text> _gameText;
 };
 
 #endif //RETROSNAKE_GAMESCENE_H

@@ -2,6 +2,8 @@
 
 #include "../../Engine/Graphics/Graphics.h"
 #include "GridLayout.h"
+#include "../../Scenes/SceneManager.h"
+#include "../../Scenes/EndScene.h"
 
 #include <iostream>
 
@@ -26,11 +28,9 @@ void Snake::render() {
     for (size_t i = 1; i < _snakeBodyParts.size(); ++i) {
         const auto& part = _snakeBodyParts[i];
         centerPos = _grid.getCellCenterPosition(part.second, part.first);
-        std::cout << "(" << part.first << "," << part.second << ") ";
+
         Graphics::drawSnakeBodyPart(centerPos.first, centerPos.second);
     }
-
-    std::cout << std::endl;
 }
 
 void Snake::update() {
@@ -41,7 +41,9 @@ void Snake::update() {
     }
 
     _inputTick = 0;
-    
+
+    _direction = _directionMemo;
+
     switch (_direction) {
         case Direction::UP:
             setPosition(getX(), getY() - 1);
@@ -57,28 +59,52 @@ void Snake::update() {
             break;
     }
 
+    bool isCollided = checkCollision();
+    if (isCollided) return;
+
+    moveBodyParts();
+}
+
+void Snake::handleInput(unsigned char key, int x, int y) {
+    if (key == 'w' && _direction != Direction::DOWN) {
+        _directionMemo = Direction::UP;
+    }
+    else if (key == 's' && _direction != Direction::UP) {
+        _directionMemo = Direction::DOWN;
+    }
+    else if (key == 'a' && _direction != Direction::RIGHT) {
+        _directionMemo = Direction::LEFT;
+    }
+    else if (key == 'd' && _direction != Direction::LEFT) {
+        _directionMemo = Direction::RIGHT;
+    }
+}
+
+void Snake::moveBodyParts() {
     auto before = _snakeBodyParts[0];
 
     _snakeBodyParts[0] = std::make_pair(getX(), getY());
+    _grid.setCellContent(getY(), getX(), CellContent::Body);
 
     for (int i = 1; i < _snakeBodyParts.size(); i++) {
+        if (i == _snakeBodyParts.size() - 1) {
+            _grid.setCellContent(_snakeBodyParts[i].second, _snakeBodyParts[i].first, CellContent::Empty);
+        }
+
         auto temp = _snakeBodyParts[i];
         _snakeBodyParts[i] = before;
+        _grid.setCellContent(before.second, before.first, CellContent::Body);
         before = temp;
     }
 }
 
-void Snake::handleInput(unsigned char key, int x, int y) {
-    if (key == 'w') {
-        _direction = Direction::UP;
+bool Snake::checkCollision() {
+    if (getX() < 0 || getX() >= FIXED_WINDOW_WIDTH / CELL_SIZE || getY() < 0 || getY() >= FIXED_WINDOW_HEIGHT / CELL_SIZE) {
+        std::cout << "Game Over!" << std::endl;
+
+        SceneManager::switchTo(new EndScene());
+        return true;
     }
-    else if (key == 's') {
-        _direction = Direction::DOWN;
-    }
-    else if (key == 'a') {
-        _direction = Direction::LEFT;
-    }
-    else if (key == 'd') {
-        _direction = Direction::RIGHT;
-    }
+
+    return false;
 }
