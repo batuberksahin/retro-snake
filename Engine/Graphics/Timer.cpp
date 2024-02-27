@@ -20,3 +20,7 @@ void Timer::Update() {
 float Timer::GetDeltaTime() {
     return deltaTime;
 }
+
+float Timer::GetDeltaTimeInMs() {
+    return deltaTime * 1000;
+}

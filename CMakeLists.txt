@@ -34,6 +34,8 @@ add_executable(RetroSnake main.cpp
         Assets/Objects/Snake.h
         Assets/Objects/GridLayout.cpp
         Assets/Objects/GridLayout.h
+        Assets/Objects/FoodSpawner.cpp
+        Assets/Objects/FoodSpawner.h
 )
 
 # find GLUT and OpenGL

@@ -6,6 +6,7 @@
 #define RETROSNAKE_TEXT_H
 
 
+#include <string>
 #include "../GameObject.h"
 
 class Text : public GameObject {
@@ -22,6 +23,8 @@ public:
 
 private:
     const char* _string;
+
+    void setString(const std::string &string);
 };
 
 

@@ -17,6 +17,8 @@ public:
     static void drawSnakeBodyPart(int posX, int posY);
 
     static void drawGridLines();
+
+    static void drawFood(int first, int second);
 };
 
 

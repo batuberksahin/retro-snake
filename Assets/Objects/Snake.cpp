@@ -59,8 +59,13 @@ void Snake::update() {
             break;
     }
 
-    bool isCollided = checkCollision();
-    if (isCollided) return;
+    if (checkCollision()) {
+        return;
+    }
+
+    if (ateFood()) {
+        addBodyPart();
+    }
 
     moveBodyParts();
 }
@@ -77,6 +82,9 @@ void Snake::handleInput(unsigned char key, int x, int y) {
     }
     else if (key == 'd' && _direction != Direction::LEFT) {
         _directionMemo = Direction::RIGHT;
+    }
+    else if (key == 'c') {
+        addBodyPart();
     }
 }
 
@@ -98,13 +106,44 @@ void Snake::moveBodyParts() {
     }
 }
 
-bool Snake::checkCollision() {
-    if (getX() < 0 || getX() >= FIXED_WINDOW_WIDTH / CELL_SIZE || getY() < 0 || getY() >= FIXED_WINDOW_HEIGHT / CELL_SIZE) {
-        std::cout << "Game Over!" << std::endl;
+bool Snake::ateFood() {
+    int headX = getX();
+    int headY = getY();
 
+    if (_grid.getCellContent(headY, headX) == CellContent::Food) {
+        std::cout << "Snake eated food!" << std::endl;
+
+        _foodSpawner.removeFood(headX, headY);
+        _grid.setCellContent(headY, headX, CellContent::Empty);
+        addBodyPart();
+        return true;
+    }
+
+    return false;
+}
+
+bool Snake::checkCollision() {
+    int headX = getX();
+    int headY = getY();
+
+    for (size_t i = 1; i < _snakeBodyParts.size(); ++i) {
+        if (_snakeBodyParts[i].first == headX && _snakeBodyParts[i].second == headY) {
+            SceneManager::switchTo(new EndScene());
+            return true;
+        }
+    }
+
+    if (headX < 0 || headX >= FIXED_WINDOW_WIDTH / CELL_SIZE || headY < 0 || headY >= FIXED_WINDOW_HEIGHT / CELL_SIZE) {
         SceneManager::switchTo(new EndScene());
         return true;
     }
 
     return false;
+}
+
+
+void Snake::addBodyPart() {
+    _snakeBodyParts.emplace_back(_snakeBodyParts[_snakeBodyParts.size() - 1]);
+
+    _length++;
 }

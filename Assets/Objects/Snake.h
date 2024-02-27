@@ -4,6 +4,8 @@
 #include <vector>
 #include "../GameObject.h"
 #include "GridLayout.h"
+#include "FoodSpawner.h"
+#include "Text.h"
 
 enum class Direction {
     UP = 0,
@@ -14,7 +16,7 @@ enum class Direction {
 
 class Snake : public GameObject {
 public:
-    Snake(int x, int y, GridLayout& grid) : GameObject(x, y), _grid(grid) {
+    Snake(int x, int y, GridLayout &grid, FoodSpawner &foodSpawner, Text scoreText) : GameObject(x, y), _grid(grid), _foodSpawner(foodSpawner), _scoreText(scoreText) {
         _length = 0;
         _inputTick = 0;
 
@@ -33,7 +35,10 @@ private:
 
     int _length;
     Direction _direction;
+
     GridLayout& _grid;
+    FoodSpawner& _foodSpawner;
+    Text& _scoreText;
 
     int _inputTick;
     Direction _directionMemo;
@@ -42,8 +47,9 @@ private:
     std::vector<std::pair<int, int>> _snakeBodyParts;
 
     void moveBodyParts();
-
     bool checkCollision();
+    void addBodyPart();
+    bool ateFood();
 };
 
 #endif //RETROSNAKE_SNAKE_H

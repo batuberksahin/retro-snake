@@ -138,3 +138,26 @@ void Graphics::drawSnakeBodyPart(int posX, int posY) {
 
     glPopMatrix();
 }
+
+void Graphics::drawFood(int x, int y) {
+    std::pair<int, int> layoutCoordinates = GridLayout::getCellCenterPosition(y, x);
+
+    std::pair<float, float> coordinates = Engine::screenPositionToGLCoordinate(layoutCoordinates.first, layoutCoordinates.second);
+
+    float food_part_width = static_cast<float>(CELL_SIZE) / FIXED_WINDOW_WIDTH;
+    float food_part_height = static_cast<float>(CELL_SIZE) / FIXED_WINDOW_HEIGHT;
+
+    glPushMatrix();
+    glTranslatef(coordinates.first, coordinates.second, 0);
+
+    glBegin(GL_QUADS);
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glVertex2f(-food_part_width, -food_part_height);
+    glVertex2f(food_part_width, -food_part_height);
+    glVertex2f(food_part_width, food_part_height);
+    glVertex2f(-food_part_width, food_part_height);
+    glEnd();
+
+    glPopMatrix();
+
+}
